@@ -1,0 +1,38 @@
+﻿@page "/"
+@inject QRCodeService qrCodeReader
+
+<h1>Hello, QR Reader!</h1>
+
+<p>QR Detected: @qrDetected</p>
+
+<button @onclick=@Scan>Start Scanning</button>
+<button @onclick=@Stop>Stop</button>
+
+
+@code{
+    string qrDetected = string.Empty;
+
+    protected override Task OnInitializedAsync()
+    {
+        qrCodeReader.QRCompletedEvent += new QRCodeService.QRCompleted(QRDetected);
+        return base.OnInitializedAsync();
+    }
+
+
+
+    public async Task QRDetected(string value)
+    {
+        qrDetected = value;
+        StateHasChanged();
+    }
+
+    async Task Scan()
+    {
+        await qrCodeReader.Scan();
+    }
+
+    async Task Stop()
+    {
+        await qrCodeReader.Stop();
+    }
+}

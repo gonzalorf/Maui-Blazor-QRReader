@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	         xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.MainPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <AbsoluteLayout>
+
+
+        <BlazorWebView
+            x:Name="webview"
+            HostPage="wwwroot/index.html" 
+            AbsoluteLayout.LayoutBounds="0,0,1,1" 
+            AbsoluteLayout.LayoutFlags="All">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+
+        <Frame x:Name="scanner" AbsoluteLayout.LayoutBounds=".5,.5,.7,.4"
+                                       AbsoluteLayout.LayoutFlags="All" IsVisible="False">
+
+        </Frame>
+    </AbsoluteLayout>
+    
+    
+    
+</ContentPage>
